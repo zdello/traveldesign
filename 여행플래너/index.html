@@ -25,14 +25,14 @@
         <div class="content">
             <div class="inner">
                 <h1>여행길</h1>
-                <p>여행은 가고 싶은데 계획 세우기 막막할 때? <a href="https://html5up.net"></a>  </p>
+                <p>여행은 가고 싶은데 계획 세우기 막막할 때? </p>
                 <p>본인 성향에 맞는 여행 계획 제작!</p>
                 <br /><a href="file:///C:/Users/%EB%A1%9C%EB%B9%841/Desktop/%EC%97%AC%ED%96%89%ED%94%8C%EB%9E%98%EB%84%88/%EB%A1%9C%EA%B7%B8%EC%9D%B8.html">로그인</a>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="#intro">내 정보</a></li>
+                <li><a href="#profile">내 정보</a></li>
                 <li><a href="#work">일정 받기</a></li>
                 <li><a href="#about">좋아요</a></li>
                 <li><a href="#contact">나의 내역</a></li>
@@ -44,19 +44,120 @@
     <!-- Main -->
     <div id="main">
 
-        <!-- Intro -->
-        <article id="intro">
-            <h2 class="major">내 정보</h2>
-            <span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-            </article>
+        <!-- profile -->
+<article id="profile">
+    <h2 class="major">내 정보</h2>
+    <span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+    <!-- 수정된 정보가 표시될 부분 -->
+    <p><strong>이름:</strong> <span id="name">홍길동</span></p>
+    <p><strong>나이:</strong> <span id="age">20세</span></p>
+    <p><strong>전화번호:</strong> <span id="phone">010-1234-1234</span></p>
+    <ul class="actions">
+        <!-- 회원정보 수정 버튼을 누르면 showEditProfile() 함수 호출 -->
+        <li><a href="#profileEdit" class="button" onclick="showEditProfile()">회원정보 수정</a></li>
+    </ul>
+</article>
 
-        <!-- Work -->
-        <article id="work">
-            <h2 class="major">Work</h2>
-            <span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-            <p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-            <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
-        </article>
+<!-- Profile Edit -->
+<article id="profileEdit" style="display: none;">
+    <h2 class="major">내 정보 수정</h2>
+    <form onsubmit="return saveProfile()">
+        <div class="field half">
+            <label for="editName">이름</label>
+            <!-- 기존 정보를 placeholder로 표시하고, 수정 가능한 입력 필드 -->
+            <input type="text" name="editName" id="editName" value="" placeholder="홍길동" />
+        </div>
+        <div class="field half">
+            <label for="editAge">나이</label>
+            <!-- 기존 정보를 placeholder로 표시하고, 수정 가능한 입력 필드 -->
+            <input type="text" name="editAge" id="editAge" value="" placeholder="20세" />
+        </div>
+        <div class="field">
+            <label for="editPhone">전화번호</label>
+            <!-- 기존 정보를 placeholder로 표시하고, 수정 가능한 입력 필드 -->
+            <input type="text" name="editPhone" id="editPhone" value="" placeholder="010-1234-1234" />
+        </div>
+        <ul class="actions">
+            <!-- 저장 버튼을 누르면 saveProfile() 함수 호출 -->
+            <li><a href="#profile" class="button" onclick="saveProfile()">저장</a></li>
+        </ul>
+    </form>
+</article>
+
+
+<!-- Work -->
+<article id="work">
+    <h2 class="major">어느날 가시나요?</h2>
+    <span class="image main"><img src="images/calendar.jpg" alt="" /></span>
+    <p>날짜를 선택해주세요.</p>
+    <input type="date" id="datePicker" />
+    <ul class="actions">
+        <li><a href="#who" class="button primary" onclick="showNextStep()">다음</a></li>
+    </ul>
+</article>
+
+<!-- 누구와 가나요? 단계 -->
+<article id="who" style="display: none;">
+    <h2 class="major">누구와 가나요?</h2>
+    <!-- 여행 동행자 선택을 위한 폼 요소들을 추가합니다. -->
+    <ul class="actions">
+        <li><a href="#" class="button primary" onclick="showResults()">제출</a></li>
+    </ul>
+</article>
+
+<script>
+// "제출" 버튼 클릭 시 결과 페이지로 이동하거나 결과를 보여줍니다.
+function showResults() {
+	// 사용자가 선택한 정보들을 수집하고, 필요한 처리를 수행합니다.
+	// 결과를 보여주거나, 다른 페이지로 이동할 수 있습니다.
+	// 예를 들어, window.location.href = 'results.html';와 같이 사용할 수 있습니다.
+}
+</script>
+
+<script>
+    // "다음" 버튼 클릭 시 "누구와 가나요?" 단계를 보여줍니다.
+    function showNextStep() {
+        const selectedDate = document.getElementById('datePicker').value;
+        if (selectedDate) {
+            showSection('#who');
+        } else {
+            alert('날짜를 선택해주세요.');
+        }
+    }
+
+    // 프로필 수정 섹션 보여주기
+    function showEditProfile() {
+        showSection('#profileEdit');
+        document.getElementById('editName').value = document.getElementById('name').innerText;
+        document.getElementById('editAge').value = document.getElementById('age').innerText;
+        document.getElementById('editPhone').value = document.getElementById('phone').innerText;
+    }
+
+    // 프로필 변경사항 저장하고 프로필 섹션 업데이트하기
+    function saveProfile() {
+        const newName = document.getElementById('editName').value;
+        const newAge = document.getElementById('editAge').value;
+        const newPhone = document.getElementById('editPhone').value;
+
+        // 필요한 데이터 유효성 검사나 백엔드 통신 등을 수행합니다.
+
+        // 프로필 정보 업데이트하기
+        document.getElementById('name').innerText = newName;
+        document.getElementById('age').innerText = newAge;
+        document.getElementById('phone').innerText = newPhone;
+
+        // 다시 "내 정보" 섹션 보여주기
+        showSection('#profile');
+        return false; // 폼 제출 방지
+    }
+
+    // 섹션 보여주기/숨기기를 위한 도우미 함수
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('article');
+        sections.forEach((section) => (section.style.display = 'none'));
+        document.querySelector(sectionId).style.display = 'block';
+    }
+</script>
 
 
         <!-- About -->
@@ -335,15 +436,56 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			
 		</div>
 
-	<!-- BG -->
-		<div id="bg"></div>
+ <!-- BG -->
+ <div id="bg"></div>
 
-	<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+ <!-- 프로필 수정 섹션 보여주기 -->
+<script>
+    function showEditProfile() {
+        showSection('#profileEdit');
+        document.getElementById('editName').value = document.getElementById('name').innerText;
+        document.getElementById('editAge').value = document.getElementById('age').innerText;
+        document.getElementById('editPhone').value = document.getElementById('phone').innerText;
+    }
+</script>
+
+<!-- 프로필 변경사항 저장하고 프로필 섹션 업데이트하기 -->
+<script>
+    function saveProfile() {
+        const newName = document.getElementById('editName').value;
+        const newAge = document.getElementById('editAge').value;
+        const newPhone = document.getElementById('editPhone').value;
+
+        // 필요한 데이터 유효성 검사나 백엔드 통신 등을 수행합니다.
+
+        // 프로필 정보 업데이트하기
+        document.getElementById('name').innerText = newName;
+        document.getElementById('age').innerText = newAge;
+        document.getElementById('phone').innerText = newPhone;
+
+        // 다시 "내 정보" 섹션 보여주기
+        showSection('#profile');
+        return false; // 폼 제출 방지
+    }
+</script>
+
+<!-- "다음" 버튼 클릭 시 "누구와 가나요?" 단계를 보여주는 함수 -->
+<script>
+    function showNextStep() {
+        const selectedDate = document.getElementById('datePicker').value;
+        if (selectedDate) {
+            showSection('#who');
+        } else {
+            alert('날짜를 선택해주세요.');
+        }
+    }
+</script>
+
+ <script src="assets/js/jquery.min.js"></script>
+ <script src="assets/js/browser.min.js"></script>
+ <script src="assets/js/breakpoints.min.js"></script>
+ <script src="assets/js/util.js"></script>
+ <script src="assets/js/main.js"></script>
 
 </body>
 </html>
